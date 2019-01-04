@@ -1,6 +1,6 @@
 package com.springboot.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,11 +13,18 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("/")
-public class IndexController {
+public class IndexController implements ErrorController {
 
-	@GetMapping
+	
+	@RequestMapping("/")
 	public String welcome() {
 		return "welcome to the app";
 	}
+
+	@Override
+	@RequestMapping("/error")
+	public String getErrorPath() {
+		return "No API found";
+	}
+	
 }
